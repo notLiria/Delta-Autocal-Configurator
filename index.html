@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Delta Autocalibration Configurator</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="controls">
+        <h1 class="title">Delta Autocalibration Configurator</h1>
+        <div id="reference">See
+          <a href="http://www.escher3d.com/pages/wizards/wizardbed.php"
+          target = "_blank">
+            here</a>
+          for more details.
+          <p>Note: All measurements will be in millimetres</p>
+        </div>
+        <div class="page-content">
+          <div class="inputs-outputs">
+            <div id="known-variables" class="card">
+              <div class="inputs">
+                <h2 class="input-label">Inputs</h2>
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label for="radius">Probing radius</label>
+                    <span class="subtitle">In cm</span>
+                  </div>
+                  <input
+                    placeholder="Radius"
+                    class="calc-input"
+                    required
+                    type="number"
+                    id="radius"
+                    name="radius"
+                    value="80"
+                  />
+                </div>
+
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label for="probe-offset-x">Probe Offset X</label>
+                    <span class="subtitle">In cm</span>
+                  </div>
+                  <input
+                    required
+                    type="Probe Offset"
+                    class="calc-input"
+                    id="probe-offset-x"
+                    name="probe-offset-x"
+                    value="0"
+                  />
+                </div>
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label for="probe-offset-y">Probe Offset Y</label>
+                    <span class="subtitle">In cm</span>
+                  </div>
+                  <input
+                          required
+                          type="Probe Offset"
+                          class="calc-input"
+                          id="probe-offset-y"
+                          name="probe-offset-y"
+                          value="0"
+                  />
+                </div>
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label>Peripheral Points</label>
+                  </div>
+                  <label>
+                    <input type="radio" name="peripheral-points" class="calc-input" value=3 /> 3
+                  </label>
+                  <label>
+                    <input type="radio" name="peripheral-points" class="calc-input" value=6 /> 6
+                  </label>
+                  <label>
+                    <input type="radio" name="peripheral-points" class="calc-input" value=9 /> 9
+                  </label>
+                  <label>
+                    <input type="radio" name="peripheral-points" class="calc-input" value=12 /> 12
+                  </label>
+                </div>
+
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label>Halfway Points</label>
+                  </div>
+                  <label>
+                    <input type="radio" name="halfway-points" class="calc-input" value=0 /> 0
+                  </label>
+                  <label>
+                    <input type="radio" name="halfway-points" class="calc-input" value=3 checked="checked"/> 3
+                  </label>
+                  <label>
+                    <input type="radio" name="halfway-points" class="calc-input" value=6 /> 6
+                  </label>
+                </div>
+
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label>Calibration Factors</label>
+                  </div>
+                  <label>
+                    <input type="radio" name="calibration-factors" class="calc-input" value=3 /> 3
+                  </label>
+                  <label>
+                    <input type="radio" name="calibration-factors" class="calc-input" value=4 /> 4
+                  </label>
+                  <label>
+                    <input type="radio" name="calibration-factors" class="calc-input" value=6 checked="checked"/> 6
+                  </label>
+                  <label>
+                    <input type="radio" name="calibration-factors" class="calc-input" value=7 /> 7
+                  </label>
+                </div>
+                <!-- <div id="reference-div" style="width: 50%; float: left;">
+              <img
+                src="img/reference.png"
+                alt="Measurement reference"
+                height="500"
+              />
+            </div> -->
+              </div>
+            </div>
+            <div class="card output-container" hidden>
+              <h2 class="input-label">Outputs</h2>
+              <div id="outputs">
+                <textarea id = "result" rows="20" cols="80" readonly=""></textarea>
+              </div>
+              <span id="error" hidden>Your inputs are invalid</span>
+            </div>
+          </div>
+          <div id="dynamic-reference"></div>
+        </div>
+
+        <!-- You can also require other files to run in this process -->
+      </div>
+    </div>
+
+    <script src="src/main.ts"></script>
+  </body>
+</html>
