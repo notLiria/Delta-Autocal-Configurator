@@ -32,12 +32,14 @@ function probe(radius, startAt, n, x0, y0){
       probe_x *= factor;
       probe_y *= factor;
     }
-    res += "G30 P" + (startAt + i)
+
+    res += "  G30 P" + (startAt + i)
         + " X" + probe_x.toFixed(2)
         + "Y" + probe_y.toFixed(2)
         + "Z-9999 H0\n";
-    res += "if result != 0\n continue \n"
+    res += "  if result != 0\n      continue \n"
   }
+  console.log(res);
   return res
 }
 
@@ -61,13 +63,6 @@ function calc_radius() {
   const calibration_factors = get_checked_value(document.getElementsByName("calibration-factors"));
   const total_points = peripheral_points + halfway_points + 1;
 
-  console.log(radius);
-  console.log(probe_offset_x);
-  console.log(probe_offset_y);
-  console.log(peripheral_points);
-  console.log(halfway_points);
-  console.log(calibration_factors);
-
   const error = document.getElementById("error");
 
   if (total_points < calibration_factors) {
@@ -81,17 +76,17 @@ function calc_radius() {
     result += "; " + peripheral_points + " points, " + calibration_factors + " factors, probing radius: " + radius + " probe offset (" + probe_offset_x + ", " + probe_offset_y + "\n";
     result += "G28 \n";
     result += "while true\n";
-    result += "if iterations = 20\n";
-    result += "abort \"Too many calibration attempts\"";
+    result += "  if iterations = 20\n";
+    result += "    abort \"Too many calibration attempts\"\n";
     result += probe(radius, 0, peripheral_points, probe_offset_x, probe_offset_y);
     result += probe(radius / 2, peripheral_points, halfway_points, probe_offset_x, probe_offset_y);
-    result += "G30 P" + (peripheral_points - 1) + " X0 Y0 Z-99999 S" + calibration_factors + "\n";
-    result += "if move.calibration.final.deviation <= 0.03\n"
-        + "break\n"
-        + "echo \"Repeating calibration because deviation is too high (\" ^move.calibration.final.deviation ^ \"mm)\"\n"
+    result += "  G30 P" + (peripheral_points - 1) + " X0 Y0 Z-99999 S" + calibration_factors + "\n";
+    result += "  if move.calibration.final.deviation <= 0.03\n"
+        + "    break\n"
+        + "  echo \"Repeating calibration because deviation is too high (\" ^move.calibration.final.deviation ^ \"mm)\"\n"
         + "echo  \"Auto calibration successful, deviation\", move.calibration.final.deviation ^ \"mm\"\n"
         + "G1 X0 Y0 Z150 F10000\n"
     document.getElementById("result").innerHTML= result;
-    console.log(result);
+
   }
 }
