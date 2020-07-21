@@ -57,7 +57,8 @@ function calc_radius() {
   const radius = parseFloat((document.getElementById("radius") as HTMLInputElement).value);
   const probe_offset_x = parseFloat((document.getElementById("probe-offset-x") as HTMLInputElement).value);
   const probe_offset_y = parseFloat((document.getElementById("probe-offset-y") as HTMLInputElement).value);
-
+  const iterations = parseFloat((document.getElementById("iterations") as HTMLInputElement).value);
+  const stddev = parseFloat((document.getElementById("stddev") as HTMLInputElement).value);
   const peripheral_points = get_checked_value(document.getElementsByName("peripheral-points"));
   const halfway_points = get_checked_value(document.getElementsByName("halfway-points"));
   const calibration_factors = get_checked_value(document.getElementsByName("calibration-factors"));
@@ -76,12 +77,12 @@ function calc_radius() {
     result += "; " + peripheral_points + " points, " + calibration_factors + " factors, probing radius: " + radius + " probe offset (" + probe_offset_x + ", " + probe_offset_y + "\n";
     result += "G28 \n";
     result += "while true\n";
-    result += "  if iterations = 20\n";
+    result += "  if iterations = " + iterations + "\n";
     result += "    abort \"Too many calibration attempts\"\n";
     result += probe(radius, 0, peripheral_points, probe_offset_x, probe_offset_y);
     result += probe(radius / 2, peripheral_points, halfway_points, probe_offset_x, probe_offset_y);
     result += "  G30 P" + (peripheral_points - 1) + " X0 Y0 Z-99999 S" + calibration_factors + "\n";
-    result += "  if move.calibration.final.deviation <= 0.03\n"
+    result += "  if move.calibration.final.deviation <= " + stddev + "\n"
         + "    break\n"
         + "  echo \"Repeating calibration because deviation is too high (\" ^move.calibration.final.deviation ^ \"mm)\"\n"
         + "echo  \"Auto calibration successful, deviation\", move.calibration.final.deviation ^ \"mm\"\n"

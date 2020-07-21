@@ -9,22 +9,23 @@
     <div class="container">
       <div class="controls">
         <h1 class="title">Delta Autocalibration Configurator</h1>
-        <div id="reference">See
+        <div class= "textarea" id="reference">See
           <a href="http://www.escher3d.com/pages/wizards/wizardbed.php"
           target = "_blank">
             here</a>
           for more details.
-          <p>Note: All measurements will be in millimetres</p>
+          <p>Originally written for Alice</p>
+          <p>You can read more about Liria's Delta <a href="https://notliria.github.io/ProjectALICE/" target="_blank">here</a></p>
         </div>
         <div class="page-content">
-          <div class="inputs-outputs">
+          <div class="inputs-outputs row">
             <div id="known-variables" class="card">
               <div class="inputs">
                 <h2 class="input-label">Inputs</h2>
                 <div class="input-container">
                   <div class="h-spaced">
                     <label for="radius">Probing radius</label>
-                    <span class="subtitle">In cm</span>
+                    <span class="subtitle">In mm</span>
                   </div>
                   <input
                     placeholder="Radius"
@@ -36,15 +37,14 @@
                     value="80"
                   />
                 </div>
-
                 <div class="input-container">
                   <div class="h-spaced">
                     <label for="probe-offset-x">Probe Offset X</label>
-                    <span class="subtitle">In cm</span>
+                    <span class="subtitle">In mm</span>
                   </div>
                   <input
                     required
-                    type="Probe Offset"
+                    type="number"
                     class="calc-input"
                     id="probe-offset-x"
                     name="probe-offset-x"
@@ -54,11 +54,11 @@
                 <div class="input-container">
                   <div class="h-spaced">
                     <label for="probe-offset-y">Probe Offset Y</label>
-                    <span class="subtitle">In cm</span>
+                    <span class="subtitle">In mm</span>
                   </div>
                   <input
                           required
-                          type="Probe Offset"
+                          type="number"
                           class="calc-input"
                           id="probe-offset-y"
                           name="probe-offset-y"
@@ -67,8 +67,36 @@
                 </div>
                 <div class="input-container">
                   <div class="h-spaced">
+                    <label for="iterations">Iterations</label>
+                  </div>
+                  <input
+                          required
+                          type="number"
+                          class="calc-input"
+                          id="iterations"
+                          name="iterations"
+                          value="20"
+                  />
+                </div>
+                <div class="input-container">
+                  <div class="h-spaced">
+                    <label for="stddev">Standard Deviation</label>
+                    <span class="subtitle">In mm</span>
+                  </div>
+                  <input
+                          required
+                          type="number"
+                          class="calc-input"
+                          id="stddev"
+                          name="stddev"
+                          value="0.03"
+                  />
+                </div>
+                <div class="input-container">
+                  <div class="h-spaced">
                     <label>Peripheral Points</label>
                   </div>
+                  <form>
                   <label>
                     <input type="radio" name="peripheral-points" class="calc-input" value=3 /> 3
                   </label>
@@ -76,17 +104,18 @@
                     <input type="radio" name="peripheral-points" class="calc-input" value=6 /> 6
                   </label>
                   <label>
-                    <input type="radio" name="peripheral-points" class="calc-input" value=9 /> 9
+                    <input type="radio" name="peripheral-points" class="calc-input" value=9 checked = "checked"/> 9
                   </label>
                   <label>
                     <input type="radio" name="peripheral-points" class="calc-input" value=12 /> 12
                   </label>
+                  </form>
                 </div>
-
                 <div class="input-container">
                   <div class="h-spaced">
                     <label>Halfway Points</label>
                   </div>
+                  <form>
                   <label>
                     <input type="radio" name="halfway-points" class="calc-input" value=0 /> 0
                   </label>
@@ -96,12 +125,14 @@
                   <label>
                     <input type="radio" name="halfway-points" class="calc-input" value=6 /> 6
                   </label>
+                  </form>
                 </div>
-
+                </form>
                 <div class="input-container">
                   <div class="h-spaced">
                     <label>Calibration Factors</label>
                   </div>
+                  <form>
                   <label>
                     <input type="radio" name="calibration-factors" class="calc-input" value=3 /> 3
                   </label>
@@ -114,6 +145,7 @@
                   <label>
                     <input type="radio" name="calibration-factors" class="calc-input" value=7 /> 7
                   </label>
+                  </form>
                 </div>
                 <!-- <div id="reference-div" style="width: 50%; float: left;">
               <img
@@ -124,15 +156,15 @@
             </div> -->
               </div>
             </div>
-            <div class="card output-container" hidden>
+            <div class="card output-container">
               <h2 class="input-label">Outputs</h2>
               <div id="outputs">
-                <textarea id = "result" rows="20" cols="80" readonly=""></textarea>
+                <textarea id = "result" rows="25" cols="80" readonly=""></textarea>
               </div>
               <span id="error" hidden>Your inputs are invalid</span>
             </div>
           </div>
-          <div id="dynamic-reference"></div>
+        <!--  <div id="dynamic-reference" hidden></div>-->
         </div>
 
         <!-- You can also require other files to run in this process -->

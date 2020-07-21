@@ -19,6 +19,10 @@ body {
 
 .controls {
   max-width: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
   padding: 0 25px;
 }
 
@@ -36,6 +40,7 @@ body {
 }
 
 .subtitle {
+
   font-size: 12px;
   color: rgb(138, 138, 138);
 }
@@ -44,6 +49,7 @@ label {
   color: $light;
   font-size: 14px;
   margin-bottom: 8px;
+  margin-left: 5px
 }
 
 .bow-input {
@@ -57,7 +63,8 @@ label {
 
 .page-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  //justify-content: space-between;
 }
 
 @media (max-width: 800px) {
@@ -73,7 +80,7 @@ label {
     margin-right: 0 !important;
   }
   #known-variables {
-    max-width: 100% !important;
+    max-width: 50% !important;
   }
   #dynamic-reference {
     width: auto;
@@ -81,6 +88,7 @@ label {
   }
   .title {
     font-size: 36px !important;
+    text-align: center;
   }
 }
 
@@ -96,20 +104,25 @@ label {
 
 .inputs-outputs {
   display: flex;
-  flex-direction: column;
-  margin-right: 10px;
+  flex-direction: row;
+  margin-right: 50px;
+  justify-content: center;
+  width: 50%
 }
 
 .card {
-  padding: 30px;
+  padding: 50px;
   background: white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15),
     0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  text-align: center;
 }
 
 #known-variables {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   max-width: 500px;
+  text-align: left;
 }
 
 .inputs {
@@ -134,7 +147,10 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 50px;
   height: 100%;
+  max-width: 200px;
+  flex: 1;
 }
 
 .output-label {
@@ -146,11 +162,12 @@ label {
 }
 
 #outputs {
-  display: grid;
+  display: flex;
   width: 100%;
   grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
+  flex:1;
   gap: 10px;
+  justify-content: center;
 }
 
 body {
@@ -163,20 +180,34 @@ html {
 }
 
 .title {
-  max-width: 500px;
+  max-width: 100%;
   font-size: 42px;
   margin-bottom: 25px;
   font-weight: 800;
   color: rgb(31, 37, 63);
+  text-align: center;
 }
 
 .container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .textarea {
-  white-space: pre-wrap;
+  width: 100%;
+  text-align: center;
 }
+
+.row{
+  display: flex;
+  justify-content:center
+}
+
+.col{
+  flex: 1;
+  padding: 1em;
+}
+
